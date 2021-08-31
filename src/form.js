@@ -18,6 +18,11 @@ class Form extends Component{
         })
     }
     
+    handleSubmit = (event) => {
+        event.preventDefault()
+        console.log(`${this.state.category}`)
+        return this.state.category
+    }
 
     render(){
         return(

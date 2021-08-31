@@ -16,7 +16,7 @@ function App() {
   }, [])
 
   const fetchData = async () => {
-    const results = await axios.get("https://api.chucknorris.io/jokes/categories");
+    const results = await axios.get(`https://api.chucknorris.io/jokes/random?category=${this.Form.handleSubmit}`);
     console.log(results.data);
     setState({
       ...state,
