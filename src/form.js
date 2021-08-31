@@ -1,5 +1,6 @@
 import React,{ Component } from "react";
 
+
 class Form extends Component{
 
     constructor(props){
@@ -10,16 +11,13 @@ class Form extends Component{
         }
     }
 
+  
     handleCategoryChange = (event) =>{
         this.setState({
             category: event.target.value
         })
     }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(`${this.state.category}`)
-    }
+    
 
     render(){
         return(

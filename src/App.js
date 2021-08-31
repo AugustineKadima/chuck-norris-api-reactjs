@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState, Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import background from "./images/bgimg.jpg";
 import axios from 'axios';
 import Form from './form';
@@ -9,13 +9,14 @@ function App() {
   const [state, setState] = useState({
     joke:""
   })
+  
 
   useEffect(()=>{
    fetchData()
   }, [])
 
   const fetchData = async () => {
-    const results = await axios.get("https://api.chucknorris.io/jokes/random?category={category}");
+    const results = await axios.get("https://api.chucknorris.io/jokes/categories");
     console.log(results.data);
     setState({
       ...state,
@@ -46,7 +47,7 @@ function App() {
               {/* Jokes */}
               <div className="jokes">
                   <p className="joke">{state.joke}</p>
-               
+                  {/* <p className="joke">{JSON.stringify(this.props.category)}</p> */}
  
               </div>
 
