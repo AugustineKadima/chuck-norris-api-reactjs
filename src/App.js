@@ -9,6 +9,12 @@ function App() {
   const [state, setState] = useState({
     joke:""
   })
+
+  let [myCategory, setMyCategory] = useState("")
+
+  function handleCategoryInput(input){
+    setMyCategory(input.category)
+  }
   
 
   useEffect(()=>{
@@ -16,7 +22,7 @@ function App() {
   }, [])
 
   const fetchData = async () => {
-    const results = await axios.get(`https://api.chucknorris.io/jokes/random?category=${this.Form.handleSubmit}`);
+    const results = await axios.get(`https://api.chucknorris.io/jokes/random?category=${myCategory}`);
     console.log(results.data);
     setState({
       ...state,
@@ -38,7 +44,7 @@ function App() {
                   <h2>Categories</h2>  
               </div>
               <div className="jokeCategoriesAll">
-              <Form />
+              <Form handleCategoryInput={handleCategoryInput}/>
                
                  
               </div>

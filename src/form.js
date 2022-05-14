@@ -1,36 +1,28 @@
-import React,{ Component } from "react";
+import React, {useState}from "react";
 
 
-class Form extends Component{
-
-    constructor(props){
-        super(props)
-
-        this.state = {
-            category:""
-        }
-    }
-
+function Form(handleCategoryInput){
   
-    handleCategoryChange = (event) =>{
-        this.setState({
-            category: event.target.value
-        })
+    let [category, setCategory] = useState({category:""})
+
+    let handleCategoryChange = (event) =>{
+        setCategory({category: event.target.value})
     }
     
-    handleSubmit = (event) => {
+    let handleSubmit = (event) => {
         event.preventDefault()
-        console.log(`${this.state.category}`)
-        return this.state.category
+        // console.log(`${category}`)
+        handleCategoryInput(category)
+        // return category
     }
 
-    render(){
+   
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div>
                       <label>Jokes Categories</label>
-                      <select value={this.state.category} onChange={this.handleCategoryChange}>
+                      <select value={category} onChange={handleCategoryChange}>
                         <option selected>Select category</option>
                         <option value="animal">Animal</option>
                         <option value="career">Career</option>
@@ -55,6 +47,6 @@ class Form extends Component{
             </div>
         )
     }
-}
+
 
 export default Form
