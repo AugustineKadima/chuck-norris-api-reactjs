@@ -6,32 +6,41 @@ import Form from './form';
 
 function App() {
 
-  const [state, setState] = useState({
-    joke:""
-  })
+  const [myJoke, setJoke] = useState({joke:"No Joke"})
 
   let [myCategory, setMyCategory] = useState("")
 
   function handleCategoryInput(input){
-    setMyCategory(input.category)
+    setMyCategory(input)
   }
   
-
   useEffect(()=>{
-   fetchData()
+    // fetch(`https://api.chucknorris.io/jokes/random?category=${myCategory}`)
+    // .then(data => data.json)
+    // .then(allJokes => {
+    //   console.log(allJokes)
+    //   // setJoke(allJokes.joke)
+    // }
+     
+      
+    //   )
+ 
+   setMyCategory(  fetchData())
   }, [])
 
   const fetchData = async () => {
     const results = await axios.get(`https://api.chucknorris.io/jokes/random?category=${myCategory}`);
-    console.log(results.data);
-    setState({
-      ...state,
-      joke:results.data
-    })
+    console.log(results.data.value);
+    return results.data.value
+    // setJoke(results.data.value)
+    // setJoke({
+    //   ...myJoke,
+    //   joke:results.data.value
+    // })
   }
 
   
-
+console.log(myJoke)
   return (
     <div className="App">
       <div className="Logo">
@@ -52,7 +61,7 @@ function App() {
 
               {/* Jokes */}
               <div className="jokes">
-                  <p className="joke">{state.joke}</p>
+                  <p className="joke">{myJoke.joke}</p>
                   {/* <p className="joke">{JSON.stringify(this.props.category)}</p> */}
  
               </div>

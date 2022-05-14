@@ -1,19 +1,17 @@
 import React, {useState}from "react";
 
 
-function Form(handleCategoryInput){
+function Form({handleCategoryInput}){
   
-    let [category, setCategory] = useState({category:""})
+    let [category, setCategory] = useState("")
 
     let handleCategoryChange = (event) =>{
-        setCategory({category: event.target.value})
+        setCategory(event.target.value)
     }
     
     let handleSubmit = (event) => {
         event.preventDefault()
-        // console.log(`${category}`)
         handleCategoryInput(category)
-        // return category
     }
 
    
